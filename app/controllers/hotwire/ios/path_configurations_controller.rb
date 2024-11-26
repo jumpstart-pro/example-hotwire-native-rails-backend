@@ -19,18 +19,24 @@ class Hotwire::Ios::PathConfigurationsController < ApplicationController
         {
           patterns: [
             "/new$",
-            "/edit$"
-          ],
-          properties: {
-            presentation: "modal"
-          }
-        },
-        {
-          patterns: [
+            "/edit$",
+            "/users/sign_up",
             "/users/sign_in"
           ],
           properties: {
-            flow: "authentication"
+            context: "modal"
+          }
+        },
+        {
+          patterns: ["^/unauthorized"],
+          properties: {
+            view_controller: "unauthorized"
+          }
+        },
+        {
+          patterns: ["^/reset_app$"],
+          properties: {
+            view_controller: "reset_app"
           }
         }
       ]
