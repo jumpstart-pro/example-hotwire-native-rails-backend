@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :turbo do
+  namespace :hotwire do
     namespace :ios do
       resource :path_configuration, only: :show
     end
