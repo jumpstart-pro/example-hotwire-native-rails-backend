@@ -1,4 +1,4 @@
-# Turbo Native Rails back-end example app
+# Hotwire Native Rails back-end example app
 
 This example app includes everything you need to get up and running with the [Jumpstart Pro iOS](https://jumpstartrails.com/ios) template.
 
@@ -32,13 +32,7 @@ See the Jumpstart Pro iOS documentation on more information on more configuratio
 
 ## Authentication
 
-The Turbo Native client requires both cookie- and token-based authentication. Cookies are used for web views and tokens are used for authenticated HTTP requests.
-
-### Signing in
-
-To ensure the client can persist these tokens a new endpoint is required. POSTing to `/api/v1/auth` with the user's email and password signs them in, sets the cookie header (`Set-Cookie`), and returns the authentication token. These are both then persisted to the device in the iOS template.
-
-Token authentication is handled via `has_secure_token` on the `User` model.
+The Hotwire Native client uses cookie authentication just like the browser.
 
 ### Signing out
 
@@ -46,7 +40,7 @@ Like signing in, signing out also requires a special workflow so the iOS client 
 
 Sending a DELETE request to `/api/v1/auth` signs the user out (resets the cookies) and deletes the associated notification token.
 
-HTML links to sign out are "trapped" via a Stimulus controller to ensure the request is sent from the app. See `TurboNative-SignOutController` on how this click is hijacked and a JavaScript message is sent to the iOS app to kick off the flow.
+HTML links to sign out are "trapped" via a Stimulus controller to ensure the request is sent from the app. See `bridge--sign-out-controller` on how this click is hijacked and a JavaScript message is sent to the iOS app to kick off the flow.
 
 ## Push notifications
 
