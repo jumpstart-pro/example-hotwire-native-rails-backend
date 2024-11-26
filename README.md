@@ -36,8 +36,6 @@ The Hotwire Native client uses cookie authentication just like the browser.
 
 ### Signing out
 
-Like signing in, signing out also requires a special workflow so the iOS client can remove the persisted tokens.
-
 Sending a DELETE request to `/api/v1/auth` signs the user out (resets the cookies) and deletes the associated notification token.
 
 HTML links to sign out are "trapped" via a Stimulus controller to ensure the request is sent from the app. See `bridge--sign-out-controller` on how this click is hijacked and a JavaScript message is sent to the iOS app to kick off the flow.
