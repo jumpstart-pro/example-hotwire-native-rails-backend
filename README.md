@@ -1,6 +1,6 @@
 # Hotwire Native Rails back-end example app
 
-This example app includes everything you need to get up and running with the [Jumpstart Pro iOS](https://jumpstartrails.com/ios) template.
+This example app includes everything you need to get up and running with the [Jumpstart Pro iOS](https://jumpstartrails.com/ios) and [Jumpstart Pro Android](https://jumpstartrails.com/android) templates.
 
 You can start with this repository as a template for your Rails codebase or copy/paste the needed code into your existing app.
 
