@@ -15,8 +15,7 @@ Creating, updating, or deleting blog posts requires you to be signed in.
 To run the example, perform the following:
 
  * Clone the repo
- * run `bundle install`
- * run `bin/rails db:create db:migrate`
+ * run `bin/setup`
  * run `bin/rails server`
  * Visit `localhost:3000` in your browser, app should be running
 
