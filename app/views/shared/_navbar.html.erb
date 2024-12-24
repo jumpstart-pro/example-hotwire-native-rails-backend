@@ -7,7 +7,13 @@
 
       <div class="sm:ml-6 sm:flex sm:items-center">
         <% if user_signed_in? %>
-          <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: {controller: "turbo-native--sign-out", action: "turbo-native--sign-out#signOut"}, class: "text-gray-900 inline-flex items-center px-3 py-2 text-sm font-medium" %>
+          <%# "Catch" sign out clicks to DELETE to API endpoint for notification token cleanup. %>
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: {
+            controller: "bridge--sign-out",
+            bridge__sign_out_path_value: api_v1_auth_path,
+            action: "bridge--sign-out#signOut",
+            turbo_action: :replace # Don't push a new screen on the stack.
+          }, class: "text-gray-900 inline-flex items-center px-3 py-2 text-sm font-medium" %>
         <% else %>
           <%= link_to "Sign in", user_session_path, class: "text-gray-900 inline-flex items-center px-3 py-2 text-sm font-medium" %>
           <%= link_to "Register", new_user_registration_path, class: "text-gray-900 inline-flex items-center px-3 py-2 text-sm font-medium" %>
