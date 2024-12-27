@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get :reset_app, to: "site#reset_app"
+
   # Defines the root path route ("/")
   root "site#show"
 end

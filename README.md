@@ -1,6 +1,6 @@
 # Hotwire Native Rails back-end example app
 
-This example app includes everything you need to get up and running with the [Jumpstart Pro iOS](https://jumpstartrails.com/ios) template.
+This example app includes everything you need to get up and running with the [Jumpstart Pro iOS](https://jumpstartrails.com/ios) and [Jumpstart Pro Android](https://jumpstartrails.com/android) templates.
 
 You can start with this repository as a template for your Rails codebase or copy/paste the needed code into your existing app.
 
@@ -15,8 +15,7 @@ Creating, updating, or deleting blog posts requires you to be signed in.
 To run the example, perform the following:
 
  * Clone the repo
- * run `bundle install`
- * run `bin/rails db:create db:migrate`
+ * run `bin/setup`
  * run `bin/rails server`
  * Visit `localhost:3000` in your browser, app should be running
 
@@ -34,15 +33,17 @@ See the Jumpstart Pro iOS documentation on more information on more configuratio
 
 The Hotwire Native client uses cookie authentication just like the browser.
 
+Upon successful auth, `after_sign_in_path_for` is set in `ApplicationController` to redirect to `/reset_app` for Hotwire Native apps. This renders an empty HTML template which the app "catches" to reset the state of the app (like tabs and reload the path configuration).
+
 ### Signing out
 
 Sending a DELETE request to `/api/v1/auth` signs the user out (resets the cookies) and deletes the associated notification token.
 
-HTML links to sign out are "trapped" via a Stimulus controller to ensure the request is sent from the app. See `bridge--sign-out-controller` on how this click is hijacked and a JavaScript message is sent to the iOS app to kick off the flow.
+HTML links to sign out are "trapped" via a Stimulus controller to ensure the request is sent from the app. See `bridge--sign-out` on how this click is hijacked and a JavaScript message is sent to the iOS app to kick off the flow.
 
 ## Push notifications
 
-After successfully signing in the app POSTs the device's notification token to `/api/v1/notification_tokens` (with the user's permission). This is persisted to the `NotificationToken` model and associated with the `User`.
+Add a `bridge--notification-token` data attribute to have the app POST the device's notification token to `/api/v1/notification_tokens` (with the user's permission). This is persisted to the `NotificationToken` model and associated with the `User`.
 
 An example push notification is set up powered by [Noticed](https://github.com/excid3/noticed) (and [Apnotic](https://github.com/ostinelli/apnotic)). See `NewPostNotification`.
 

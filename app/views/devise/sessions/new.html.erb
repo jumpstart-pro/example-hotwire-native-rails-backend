@@ -4,17 +4,20 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |form| %>
     <div class="my-4">
       <%= form.label :email %><br>
-      <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.email_field :email, value: "user@example.com", autofocus: true, autocomplete: "email", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
     <div class="my-4">
       <%= form.label :password %>
-      <%= form.password_field :password, autocomplete: "current-password", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.password_field :password, value: "password", autocomplete: "current-password", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
     <div class="inline">
       <%= form.submit "Sign in", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     </div>
+
+    <%# Keep user signed in between app launches. %>
+    <%= form.hidden_field(:remember_me, value: true) if hotwire_native_app? %>
   <% end %>
 
   <div class="mt-8">
