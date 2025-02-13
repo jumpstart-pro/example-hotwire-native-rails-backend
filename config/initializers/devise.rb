@@ -9,10 +9,6 @@ class TurboFailureApp < Devise::FailureApp
   end
 
   include Turbo::Native::Navigation
-
-  def http_auth?
-    hotwire_native_app? || super
-  end
 end
 
 # Assuming you have not yet modified this file, each configuration option below
