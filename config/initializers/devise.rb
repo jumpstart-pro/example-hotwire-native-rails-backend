@@ -10,8 +10,11 @@ class TurboFailureApp < Devise::FailureApp
 
   include Turbo::Native::Navigation
 
+  # Intercept for Hotwire Native:
+  # Return a 401 for any :authenticate_user before actions
+  # Return a 422 for any login failures
   def http_auth?
-    hotwire_native_app? || super
+    (hotwire_native_app? && !params["hotwire_native_form"]) || super
   end
 end
 
